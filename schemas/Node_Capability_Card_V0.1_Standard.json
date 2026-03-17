@@ -1,0 +1,425 @@
+{
+  "schema_name": "OCAX_Node_Capability_Card",
+  "version": "0.1",
+  "description": "OCAX 节点能力描述标准协议。定义节点能力、运行状态、质量指标和商业属性，用于平台交易撮合。",
+  "fields": [
+    {
+      "name": "node_id",
+      "type": "string",
+      "required": true,
+      "description": "节点唯一标识符",
+      "example": "OCAX-NODE-20260315-001",
+      "constraints": "必须为非空字符串，与 Passport 中的 node_id 一致"
+    },
+    {
+      "name": "node_name",
+      "type": "string",
+      "required": true,
+      "description": "节点显示名称",
+      "example": "Image_Processor_01",
+      "constraints": "2-50个字符"
+    },
+    {
+      "name": "owner_name",
+      "type": "string",
+      "required": true,
+      "description": "节点所有者标识",
+      "example": "TG_User_Jiahui",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "whitelist_status",
+      "type": "string",
+      "required": true,
+      "description": "白名单状态",
+      "example": "approved",
+      "constraints": "枚举值: pending/approved/rejected/suspended"
+    },
+    {
+      "name": "region",
+      "type": "string",
+      "required": false,
+      "description": "节点所在区域",
+      "example": "cn-east-1",
+      "constraints": "可选"
+    },
+    {
+      "name": "ip_country",
+      "type": "string",
+      "required": false,
+      "description": "IP 所属国家代码",
+      "example": "CN",
+      "constraints": "ISO 3166-1 alpha-2"
+    },
+    {
+      "name": "operating_system",
+      "type": "string",
+      "required": true,
+      "description": "操作系统",
+      "example": "Linux Ubuntu 22.04",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "cpu",
+      "type": "string",
+      "required": false,
+      "description": "CPU 型号",
+      "example": "Intel Xeon E5-2680 v4",
+      "constraints": "可选"
+    },
+    {
+      "name": "gpu",
+      "type": "string",
+      "required": false,
+      "description": "GPU 型号",
+      "example": "NVIDIA Tesla T4",
+      "constraints": "可选"
+    },
+    {
+      "name": "memory_gb",
+      "type": "number",
+      "required": true,
+      "description": "内存大小 (GB)",
+      "example": 32,
+      "constraints": "必须大于 0"
+    },
+    {
+      "name": "storage_gb",
+      "type": "number",
+      "required": true,
+      "description": "存储空间 (GB)",
+      "example": 512,
+      "constraints": "必须大于 0"
+    },
+    {
+      "name": "network_profile",
+      "type": "object",
+      "required": false,
+      "description": "网络能力配置",
+      "example": {
+        "bandwidth_mbps": 100,
+        "latency_ms": 20,
+        "stability": "high"
+      },
+      "constraints": "对象包含带宽、延迟、稳定性字段"
+    },
+    {
+      "name": "runtime_readiness",
+      "type": "object",
+      "required": true,
+      "description": "运行时就绪状态",
+      "example": {
+        "status": "ready",
+        "uptime_seconds": 7200,
+        "last_check": "2026-03-15T01:00:00Z"
+      },
+      "constraints": "支持布尔值或对象"
+    },
+    {
+      "name": "supported_tags",
+      "type": "array",
+      "required": true,
+      "description": "支持的技能标签",
+      "example": ["image_processing", "gimp", "python", "ocr"],
+      "constraints": "至少包含一个标签"
+    },
+    {
+      "name": "supported_workflows",
+      "type": "array",
+      "required": false,
+      "description": "支持的工作流",
+      "example": ["ecom_onboarding", "image_pipeline", "doc_generation"],
+      "constraints": "可选"
+    },
+    {
+      "name": "max_concurrency",
+      "type": "integer",
+      "required": true,
+      "description": "最大并发任务数",
+      "example": 5,
+      "constraints": "必须大于 0"
+    },
+    {
+      "name": "avg_queue_time_seconds",
+      "type": "number",
+      "required": false,
+      "description": "平均排队时间 (秒)",
+      "example": 30,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "avg_execution_time_seconds",
+      "type": "number",
+      "required": false,
+      "description": "平均执行时间 (秒)",
+      "example": 120,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "uptime_hours",
+      "type": "number",
+      "required": false,
+      "description": "累计运行时间 (小时)",
+      "example": 168,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "completed_tasks",
+      "type": "integer",
+      "required": false,
+      "description": "累计完成任务数",
+      "example": 42,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "success_rate",
+      "type": "number",
+      "required": true,
+      "description": "任务成功率 (0-1)",
+      "example": 0.95,
+      "constraints": "范围 0 到 1"
+    },
+    {
+      "name": "reputation_score",
+      "type": "number",
+      "required": true,
+      "description": "信誉评分 (0-100)",
+      "example": 87,
+      "constraints": "范围 0 到 100"
+    },
+    {
+      "name": "stability_score",
+      "type": "number",
+      "required": false,
+      "description": "稳定性评分 (0-100)",
+      "example": 92,
+      "constraints": "范围 0 到 100"
+    },
+    {
+      "name": "estimated_value_per_day",
+      "type": "number",
+      "required": false,
+      "description": "每日预估价值 (Tokens)",
+      "example": 500,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "settlement_account",
+      "type": "string",
+      "required": false,
+      "description": "结算账户",
+      "example": "TG_User_Jiahui_Wallet",
+      "constraints": "可选"
+    },
+    {
+      "name": "settlement_rate",
+      "type": "number",
+      "required": false,
+      "description": "结算费率 (%)",
+      "example": 95,
+      "constraints": "0-100"
+    },
+    {
+      "name": "price_floor",
+      "type": "number",
+      "required": false,
+      "description": "最低报价 (Tokens)",
+      "example": 10,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "available_time_window",
+      "type": "object",
+      "required": false,
+      "description": "可用时间段",
+      "example": {
+        "timezone": "Asia/Shanghai",
+        "work_hours": "09:00-18:00",
+        "days": ["Mon", "Tue", "Wed", "Thu", "Fri"]
+      },
+      "constraints": "可选"
+    },
+    {
+      "name": "trust_score",
+      "type": "number",
+      "required": false,
+      "description": "信任评分 (0-100)",
+      "example": 90,
+      "constraints": "范围 0 到 100"
+    },
+    {
+      "name": "penalty_status",
+      "type": "boolean",
+      "required": false,
+      "description": "是否有处罚记录",
+      "example": false,
+      "constraints": "布尔值或枚举"
+    },
+    {
+      "name": "suspension_status",
+      "type": "boolean",
+      "required": false,
+      "description": "是否被暂停",
+      "example": false,
+      "constraints": "布尔值或枚举"
+    },
+    {
+      "name": "last_verified_at",
+      "type": "string",
+      "required": false,
+      "description": "最后验证时间",
+      "example": "2026-03-15T01:00:00Z",
+      "constraints": "ISO 8601 格式"
+    }
+  ],
+  "required_fields": [
+    "node_id",
+    "node_name",
+    "owner_name",
+    "whitelist_status",
+    "operating_system",
+    "memory_gb",
+    "storage_gb",
+    "runtime_readiness",
+    "supported_tags",
+    "max_concurrency",
+    "success_rate",
+    "reputation_score"
+  ],
+  "validation_rules": {
+    "node_id": {
+      "type": "string",
+      "minLength": 1,
+      "error": "node_id 必须为非空字符串"
+    },
+    "whitelist_status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected", "suspended"],
+      "error": "whitelist_status 必须是 pending/approved/rejected/suspended 之一"
+    },
+    "success_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "error": "success_rate 必须在 0-1 之间"
+    },
+    "reputation_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "error": "reputation_score 必须在 0-100 之间"
+    },
+    "stability_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "error": "stability_score 必须在 0-100 之间"
+    },
+    "trust_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "error": "trust_score 必须在 0-100 之间"
+    },
+    "memory_gb": {
+      "type": "number",
+      "minimum": 0.001,
+      "error": "memory_gb 必须大于 0"
+    },
+    "storage_gb": {
+      "type": "number",
+      "minimum": 0.001,
+      "error": "storage_gb 必须大于 0"
+    },
+    "max_concurrency": {
+      "type": "integer",
+      "minimum": 1,
+      "error": "max_concurrency 必须大于 0"
+    },
+    "supported_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "error": "supported_tags 至少包含一个标签"
+    },
+    "supported_workflows": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "error": "supported_workflows 必须是字符串数组"
+    },
+    "penalty_status": {
+      "type": "boolean",
+      "error": "penalty_status 必须为布尔值"
+    },
+    "suspension_status": {
+      "type": "boolean",
+      "error": "suspension_status 必须为布尔值"
+    },
+    "settlement_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "error": "settlement_rate 必须在 0-100 之间"
+    }
+  },
+  "sample_node_capability_card": {
+    "node_id": "OCAX-NODE-20260315-001",
+    "node_name": "Image_Processor_01",
+    "owner_name": "TG_User_Jiahui",
+    "whitelist_status": "approved",
+    "region": "cn-east-1",
+    "ip_country": "CN",
+    "operating_system": "Linux Ubuntu 22.04",
+    "cpu": "Intel Xeon E5-2680 v4 @ 2.40GHz",
+    "gpu": "NVIDIA Tesla T4",
+    "memory_gb": 32,
+    "storage_gb": 512,
+    "network_profile": {
+      "bandwidth_mbps": 100,
+      "latency_ms": 20,
+      "stability": "high"
+    },
+    "runtime_readiness": {
+      "status": "ready",
+      "uptime_seconds": 7200,
+      "last_check": "2026-03-15T01:25:00Z"
+    },
+    "supported_tags": [
+      "image_processing",
+      "gimp",
+      "python",
+      "automation",
+      "ocr",
+      "resize"
+    ],
+    "supported_workflows": [
+      "ecom_onboarding",
+      "image_pipeline"
+    ],
+    "max_concurrency": 5,
+    "avg_queue_time_seconds": 30,
+    "avg_execution_time_seconds": 120,
+    "uptime_hours": 168,
+    "completed_tasks": 42,
+    "success_rate": 0.95,
+    "reputation_score": 87,
+    "stability_score": 92,
+    "estimated_value_per_day": 500,
+    "settlement_account": "TG_User_Jiahui_Wallet",
+    "settlement_rate": 95,
+    "price_floor": 10,
+    "available_time_window": {
+      "timezone": "Asia/Shanghai",
+      "work_hours": "09:00-18:00",
+      "days": ["Mon", "Tue", "Wed", "Thu", "Fri"]
+    },
+    "trust_score": 90,
+    "penalty_status": false,
+    "suspension_status": false,
+    "last_verified_at": "2026-03-15T01:00:00Z"
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "schema_name": "OCAX_Settlement_Rules",
+  "version": "0.1",
+  "description": "OCAX 平台结算规则系统标准协议。定义订单结算、平台佣金、节点支付等结算流程。",
+  "fields": [
+    {
+      "name": "settlement_rule_id",
+      "type": "string",
+      "required": true,
+      "description": "结算规则唯一标识符",
+      "example": "OCAX-SR-ecom-onboarding-001",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "order_id",
+      "type": "string",
+      "format": "uuid",
+      "required": true,
+      "description": "关联的订单 ID",
+      "example": "550e8400-e29b-41d4-a716-446655440001",
+      "constraints": "必须是有效的 UUID 格式"
+    },
+    {
+      "name": "order_template_id",
+      "type": "string",
+      "required": true,
+      "description": "订单模板 ID",
+      "example": "ecom_onboarding",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "workflow_id",
+      "type": "string",
+      "required": true,
+      "description": "关联的 Workflow ID",
+      "example": "OCAX-WF-ecom-onboarding-001",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "acceptance_status",
+      "type": "string",
+      "required": true,
+      "description": "验收状态",
+      "example": "auto_review_passed",
+      "constraints": "枚举值: pending/auto_review_passed/auto_review_failed/manual_review_required"
+    },
+    {
+      "name": "settlement_status",
+      "type": "string",
+      "required": true,
+      "description": "结算状态",
+      "example": "processed",
+      "constraints": "枚举值: pending/processed/failed/refunded"
+    },
+    {
+      "name": "order_price",
+      "type": "number",
+      "required": true,
+      "description": "订单价格 (Tokens)",
+      "example": 50,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "platform_fee",
+      "type": "number",
+      "required": true,
+      "description": "平台手续费 (Tokens)",
+      "example": 2.5,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "escrow_amount",
+      "type": "number",
+      "required": false,
+      "description": "托管金额 (Tokens)",
+      "example": 50,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "settlement_amount",
+      "type": "number",
+      "required": true,
+      "description": "结算金额 (Tokens)",
+      "example": 47.5,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "refund_amount",
+      "type": "number",
+      "required": false,
+      "description": "退款金额 (Tokens)",
+      "example": 0,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "payable_amount",
+      "type": "number",
+      "required": true,
+      "description": "应付金额 (Tokens)",
+      "example": 47.5,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "payout_method",
+      "type": "string",
+      "required": false,
+      "description": "支付方式",
+      "example": "crypto",
+      "constraints": "枚举值: bank_transfer/crypto/other"
+    },
+    {
+      "name": "payout_address",
+      "type": "string",
+      "required": false,
+      "description": "支付地址/账户",
+      "example": "0x1234567890abcdef",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "payout_status",
+      "type": "string",
+      "required": false,
+      "description": "支付状态",
+      "example": "completed",
+      "constraints": "枚举值: pending/initiated/completed/failed"
+    },
+    {
+      "name": "transaction_id",
+      "type": "string",
+      "required": false,
+      "description": "交易 ID",
+      "example": "TX-20260315-001",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "payout_date",
+      "type": "string",
+      "required": false,
+      "description": "支付日期",
+      "example": "2026-03-15T01:50:00Z",
+      "constraints": "ISO 8601 格式"
+    },
+    {
+      "name": "payment_threshold",
+      "type": "number",
+      "required": false,
+      "description": "支付阈值 (Tokens)",
+      "example": 10,
+      "constraints": "大于 0"
+    },
+    {
+      "name": "minimum_payment_amount",
+      "type": "number",
+      "required": false,
+      "description": "最低支付金额 (Tokens)",
+      "example": 1,
+      "constraints": "大于 0"
+    },
+    {
+      "name": "max_retries",
+      "type": "integer",
+      "required": false,
+      "description": "最大重试次数",
+      "example": 3,
+      "constraints": "大于 0"
+    },
+    {
+      "name": "retry_interval_seconds",
+      "type": "number",
+      "required": false,
+      "description": "重试间隔 (秒)",
+      "example": 3600,
+      "constraints": "大于 0"
+    },
+    {
+      "name": "max_payout_period_days",
+      "type": "integer",
+      "required": false,
+      "description": "最大支付周期 (天)",
+      "example": 7,
+      "constraints": "大于 0"
+    },
+    {
+      "name": "settlement_report_template",
+      "type": "object",
+      "required": false,
+      "description": "结算报告模板",
+      "example": {"fields": ["order_id", "amount", "fee", "net"]},
+      "constraints": "对象类型"
+    },
+    {
+      "name": "report_generated_at",
+      "type": "string",
+      "required": false,
+      "description": "报告生成时间",
+      "example": "2026-03-15T01:50:00Z",
+      "constraints": "ISO 8601 格式"
+    },
+    {
+      "name": "last_verified_at",
+      "type": "string",
+      "required": false,
+      "description": "最后验证时间",
+      "example": "2026-03-15T01:50:00Z",
+      "constraints": "ISO 8601 格式"
+    },
+    {
+      "name": "deprecated_flag",
+      "type": "boolean",
+      "required": false,
+      "description": "是否弃用",
+      "example": false,
+      "constraints": "布尔值"
+    }
+  ],
+  "required_fields": [
+    "settlement_rule_id",
+    "order_id",
+    "order_template_id",
+    "workflow_id",
+    "acceptance_status",
+    "settlement_status",
+    "order_price",
+    "platform_fee",
+    "settlement_amount",
+    "payable_amount"
+  ],
+  "validation_rules": {
+    "order_id": {
+      "type": "string",
+      "format": "uuid",
+      "error": "order_id 必须为有效的 UUID 格式"
+    },
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1,
+      "error": "workflow_id 不能为空"
+    },
+    "order_price": {
+      "type": "number",
+      "minimum": 0,
+      "error": "order_price 必须大于等于 0"
+    },
+    "platform_fee": {
+      "type": "number",
+      "minimum": 0,
+      "error": "platform_fee 必须大于等于 0"
+    },
+    "settlement_amount": {
+      "type": "number",
+      "minimum": 0,
+      "error": "settlement_amount 必须大于等于 0"
+    },
+    "payable_amount": {
+      "type": "number",
+      "minimum": 0,
+      "error": "payable_amount 必须大于等于 0"
+    },
+    "payout_method": {
+      "type": "string",
+      "enum": ["bank_transfer", "crypto", "other"],
+      "error": "payout_method 必须是有效枚举值"
+    },
+    "settlement_status": {
+      "type": "string",
+      "enum": ["pending", "processed", "failed", "refunded"],
+      "error": "settlement_status 必须是有效枚举值"
+    },
+    "max_retries": {
+      "type": "integer",
+      "minimum": 1,
+      "error": "max_retries 必须大于 0"
+    },
+    "retry_interval_seconds": {
+      "type": "number",
+      "minimum": 0.001,
+      "error": "retry_interval_seconds 必须大于 0"
+    },
+    "deprecated_flag": {
+      "type": "boolean",
+      "error": "deprecated_flag 必须为布尔值"
+    }
+  },
+  "sample_settlement_rule_set": {
+    "settlement_rule_id": "OCAX-SR-ecom-onboarding-001",
+    "order_id": "550e8400-e29b-41d4-a716-446655440001",
+    "order_template_id": "ecom_onboarding",
+    "workflow_id": "OCAX-WF-ecom-onboarding-001",
+    "acceptance_status": "auto_review_passed",
+    "settlement_status": "processed",
+    "order_price": 50,
+    "platform_fee": 2.5,
+    "escrow_amount": 50,
+    "settlement_amount": 47.5,
+    "refund_amount": 0,
+    "payable_amount": 47.5,
+    "payout_method": "crypto",
+    "payout_address": "0x1234567890abcdef",
+    "payout_status": "completed",
+    "transaction_id": "TX-20260315-001",
+    "payout_date": "2026-03-15T01:50:00Z",
+    "payment_threshold": 10,
+    "minimum_payment_amount": 1,
+    "max_retries": 3,
+    "retry_interval_seconds": 3600,
+    "max_payout_period_days": 7,
+    "settlement_report_template": {
+      "fields": ["order_id", "amount", "fee", "net", "transaction_id"]
+    },
+    "report_generated_at": "2026-03-15T01:50:00Z",
+    "last_verified_at": "2026-03-15T01:50:00Z",
+    "deprecated_flag": false
+  }
+}

@@ -1,0 +1,337 @@
+{
+  "schema_name": "OCAX_Passport_Schema",
+  "version": "0.1",
+  "description": "OCAX 节点身份认证与资产证明标准协议。定义 Passport 数据结构、验证规则和示例。",
+  "fields": [
+    {
+      "name": "passport_id",
+      "type": "string",
+      "format": "uuid",
+      "required": true,
+      "description": "Passport 唯一标识符，必须使用 UUID",
+      "example": "550e8400-e29b-41d4-a716-446655440000",
+      "constraints": "必须为有效的 UUID v4 格式"
+    },
+    {
+      "name": "node_id",
+      "type": "string",
+      "required": true,
+      "description": "对应节点的唯一标识符",
+      "example": "OCAX-NODE-20260315-001",
+      "constraints": "必须与 Passport 一一对应"
+    },
+    {
+      "name": "node_name",
+      "type": "string",
+      "required": true,
+      "description": "节点显示名称，用于人类可读标识",
+      "example": "Image_Processor_01",
+      "constraints": "2-50个字符，支持字母、数字、下划线"
+    },
+    {
+      "name": "owner_name",
+      "type": "string",
+      "required": true,
+      "description": "节点所有者名称或标识",
+      "example": "TG_User_Jiahui",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "region",
+      "type": "string",
+      "required": false,
+      "description": "节点所在地理区域",
+      "example": "cn-east-1",
+      "constraints": "可选，推荐使用标准区域代码"
+    },
+    {
+      "name": "ip_country",
+      "type": "string",
+      "required": false,
+      "description": "节点 IP 所属国家代码",
+      "example": "CN",
+      "constraints": "ISO 3166-1 alpha-2 国家代码"
+    },
+    {
+      "name": "operating_system",
+      "type": "string",
+      "required": true,
+      "description": "节点运行的操作系统",
+      "example": "Linux Ubuntu 22.04",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "cpu",
+      "type": "string",
+      "required": false,
+      "description": "CPU 型号或规格",
+      "example": "Intel Xeon E5-2680 v4",
+      "constraints": "可选"
+    },
+    {
+      "name": "gpu",
+      "type": "string",
+      "required": false,
+      "description": "GPU 型号或规格",
+      "example": "NVIDIA RTX 3090",
+      "constraints": "可选"
+    },
+    {
+      "name": "memory_gb",
+      "type": "number",
+      "required": true,
+      "description": "内存大小（GB）",
+      "example": 16,
+      "constraints": "必须为正数"
+    },
+    {
+      "name": "storage_gb",
+      "type": "number",
+      "required": true,
+      "description": "存储空间大小（GB）",
+      "example": 512,
+      "constraints": "必须为正数"
+    },
+    {
+      "name": "runtime_readiness",
+      "type": "object",
+      "oneOf": [
+        {
+          "type": "boolean",
+          "description": "布尔值形式：true 表示就绪，false 表示未就绪"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["ready", "not_ready", "busy", "offline"],
+              "description": "节点运行状态"
+            },
+            "uptime_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "description": "运行时长（秒）"
+            },
+            "last_check": {
+              "type": "string",
+              "format": "date-time",
+              "description": "最后检查时间"
+            }
+          },
+          "required": ["status"],
+          "description": "对象形式：包含 status, uptime_seconds, last_check 字段"
+        }
+      ],
+      "required": true,
+      "description": "运行时就绪状态，支持布尔值或对象两种形式",
+      "example": {
+        "status": "ready",
+        "uptime_seconds": 3600,
+        "last_check": "2026-03-15T01:00:00Z"
+      },
+      "constraints": "可以是布尔值 (true/false)，也可以是包含 status 字段的对象"
+    },
+    {
+      "name": "supported_tags",
+      "type": "array",
+      "required": true,
+      "description": "节点支持的技能标签列表",
+      "example": ["image_processing", "gimp", "python", "automation"],
+      "constraints": "至少包含一个标签"
+    },
+    {
+      "name": "uptime_hours",
+      "type": "number",
+      "required": false,
+      "description": "累计运行时长（小时）",
+      "example": 168,
+      "constraints": "必须大于等于 0"
+    },
+    {
+      "name": "completed_tasks",
+      "type": "integer",
+      "required": false,
+      "description": "累计完成任务数",
+      "example": 42,
+      "constraints": "必须大于等于 0"
+    },
+    {
+      "name": "success_rate",
+      "type": "number",
+      "required": true,
+      "description": "任务成功率（0-1）",
+      "example": 0.95,
+      "constraints": "范围 0 到 1"
+    },
+    {
+      "name": "reputation_score",
+      "type": "number",
+      "required": true,
+      "description": "信誉评分（0-100）",
+      "example": 87,
+      "constraints": "范围 0 到 100"
+    },
+    {
+      "name": "estimated_value_per_day",
+      "type": "number",
+      "required": false,
+      "description": "每日预估价值（Tokens）",
+      "example": 500,
+      "constraints": "必须大于等于 0"
+    },
+    {
+      "name": "recommended_order_types",
+      "type": "array",
+      "required": false,
+      "description": "推荐接受的订单类型",
+      "example": ["image_processing", "file_conversion", "data_extraction"],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "generated_at",
+      "type": "string",
+      "required": true,
+      "description": "Passport 生成时间（ISO 8601）",
+      "example": "2026-03-15T01:20:00Z",
+      "constraints": "ISO 8601 格式"
+    }
+  ],
+  "required_fields": [
+    "passport_id",
+    "node_id",
+    "node_name",
+    "owner_name",
+    "operating_system",
+    "memory_gb",
+    "storage_gb",
+    "runtime_readiness",
+    "supported_tags",
+    "success_rate",
+    "reputation_score",
+    "generated_at"
+  ],
+  "validation_rules": {
+    "passport_id": {
+      "type": "string",
+      "format": "uuid",
+      "error": "passport_id 必须为有效的 UUID 格式"
+    },
+    "success_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "error": "success_rate 必须在 0-1 之间"
+    },
+    "reputation_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "error": "reputation_score 必须在 0-100 之间"
+    },
+    "estimated_value_per_day": {
+      "type": "number",
+      "minimum": 0,
+      "error": "estimated_value_per_day 必须大于等于 0"
+    },
+    "memory_gb": {
+      "type": "number",
+      "minimum": 0,
+      "error": "memory_gb 必须为正数"
+    },
+    "storage_gb": {
+      "type": "number",
+      "minimum": 0,
+      "error": "storage_gb 必须为正数"
+    },
+    "runtime_readiness": {
+      "oneOf": [
+        {
+          "type": "boolean",
+          "description": "布尔值形式"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["ready", "not_ready", "busy", "offline"]
+            },
+            "uptime_seconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "last_check": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": ["status"]
+        }
+      ],
+      "error": "runtime_readiness 可以是布尔值 (true/false) 或对象 (包含 status 字段)"
+    },
+    "supported_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "error": "supported_tags 至少包含一个标签"
+    },
+    "recommended_order_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "error": "recommended_order_types 必须是字符串数组"
+    },
+    "completed_tasks": {
+      "type": "integer",
+      "minimum": 0,
+      "error": "completed_tasks 必须大于等于 0"
+    },
+    "uptime_hours": {
+      "type": "number",
+      "minimum": 0,
+      "error": "uptime_hours 必须大于等于 0"
+    }
+  },
+  "sample_passport": {
+    "passport_id": "550e8400-e29b-41d4-a716-446655440000",
+    "node_id": "OCAX-NODE-20260315-001",
+    "node_name": "Image_Processor_01",
+    "owner_name": "TG_User_Jiahui",
+    "region": "cn-east-1",
+    "ip_country": "CN",
+    "operating_system": "Linux Ubuntu 22.04",
+    "cpu": "Intel Xeon E5-2680 v4 @ 2.40GHz",
+    "gpu": "NVIDIA Tesla T4",
+    "memory_gb": 32,
+    "storage_gb": 512,
+    "runtime_readiness": {
+      "status": "ready",
+      "uptime_seconds": 7200,
+      "last_check": "2026-03-15T01:20:00Z"
+    },
+    "supported_tags": [
+      "image_processing",
+      "gimp",
+      "python",
+      "automation",
+      "ocr",
+      "resize"
+    ],
+    "uptime_hours": 168,
+    "completed_tasks": 42,
+    "success_rate": 0.95,
+    "reputation_score": 87,
+    "estimated_value_per_day": 500,
+    "recommended_order_types": [
+      "image_processing",
+      "file_conversion",
+      "data_extraction"
+    ],
+    "generated_at": "2026-03-15T01:20:00Z"
+  }
+}

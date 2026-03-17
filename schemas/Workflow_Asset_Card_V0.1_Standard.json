@@ -1,0 +1,437 @@
+{
+  "schema_name": "OCAX_Workflow_Asset_Card",
+  "version": "0.1",
+  "description": "OCAX 工作流资产标准协议。定义可交易 workflow 的输入输出、执行规则、验收规则和版本信息。",
+  "fields": [
+    {
+      "name": "workflow_id",
+      "type": "string",
+      "required": true,
+      "description": "工作流唯一标识符",
+      "example": "OCAX-WF-ecom-onboarding-001",
+      "constraints": "必须为非空字符串，格式: OCAX-WF-{name}-{序号}"
+    },
+    {
+      "name": "workflow_name",
+      "type": "string",
+      "required": true,
+      "description": "工作流显示名称",
+      "example": "电商上新工作流",
+      "constraints": "2-100个字符"
+    },
+    {
+      "name": "owner_name",
+      "type": "string",
+      "required": true,
+      "description": "工作流所有者",
+      "example": "TG_User_Jiahui",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "required": true,
+      "description": "工作流分类",
+      "example": "ecommerce",
+      "constraints": "分类标签"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": true,
+      "description": "工作流描述",
+      "example": "将商品图片处理后插入到确认单模板中",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "version",
+      "type": "string",
+      "required": true,
+      "description": "版本号",
+      "example": "0.1",
+      "constraints": "语义化版本格式"
+    },
+    {
+      "name": "whitelist_status",
+      "type": "string",
+      "required": true,
+      "description": "白名单状态",
+      "example": "approved",
+      "constraints": "枚举值: pending/approved/rejected/suspended"
+    },
+    {
+      "name": "input_schema",
+      "type": "object",
+      "required": true,
+      "description": "输入数据 Schema",
+      "example": {
+        "type": "object",
+        "properties": {
+          "source_image": {"type": "string"},
+          "target_width": {"type": "integer"},
+          "product_name": {"type": "string"}
+        },
+        "required": ["source_image"]
+      },
+      "constraints": "JSON Schema 格式"
+    },
+    {
+      "name": "required_input_fields",
+      "type": "array",
+      "required": true,
+      "description": "必填输入字段",
+      "example": ["source_image"],
+      "constraints": "至少包含一个字段"
+    },
+    {
+      "name": "optional_input_fields",
+      "type": "array",
+      "required": false,
+      "description": "可选输入字段",
+      "example": ["target_width", "product_sku"],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "input_examples",
+      "type": "array",
+      "required": false,
+      "description": "输入示例",
+      "example": [{"source_image": "D:/products/img1.jpg"}],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "input_validation_rules",
+      "type": "object",
+      "required": false,
+      "description": "输入验证规则",
+      "example": {"source_image": "required,file_exists"},
+      "constraints": "对象类型"
+    },
+    {
+      "name": "output_schema",
+      "type": "object",
+      "required": true,
+      "description": "输出数据 Schema",
+      "example": {
+        "type": "object",
+        "properties": {
+          "output_pdf": {"type": "string"},
+          "page_count": {"type": "integer"}
+        }
+      },
+      "constraints": "JSON Schema 格式"
+    },
+    {
+      "name": "required_output_fields",
+      "type": "array",
+      "required": true,
+      "description": "必填输出字段",
+      "example": ["output_pdf"],
+      "constraints": "至少包含一个字段"
+    },
+    {
+      "name": "output_format",
+      "type": "string",
+      "required": true,
+      "description": "输出格式",
+      "example": "PDF",
+      "constraints": "支持的格式"
+    },
+    {
+      "name": "output_examples",
+      "type": "array",
+      "required": false,
+      "description": "输出示例",
+      "example": [{"output_pdf": "D:/output/confirm.pdf", "page_count": 1}],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "execution_steps_summary",
+      "type": "string",
+      "required": true,
+      "description": "执行步骤摘要",
+      "example": "1. GIMP缩放图片 2. LibreOffice生成PDF",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "expected_runtime_seconds",
+      "type": "number",
+      "required": true,
+      "description": "预期运行时间 (秒)",
+      "example": 120,
+      "constraints": "必须大于 0"
+    },
+    {
+      "name": "timeout_limit_seconds",
+      "type": "number",
+      "required": true,
+      "description": "超时限制 (秒)",
+      "example": 300,
+      "constraints": "必须大于 0"
+    },
+    {
+      "name": "retry_policy",
+      "type": "object",
+      "required": false,
+      "description": "重试策略",
+      "example": {"max_retries": 3, "backoff_seconds": 10},
+      "constraints": "对象类型"
+    },
+    {
+      "name": "idempotency_rule",
+      "type": "string",
+      "required": false,
+      "description": "幂等性规则",
+      "example": "相同输入产生相同输出",
+      "constraints": "描述性文本"
+    },
+    {
+      "name": "acceptance_rules",
+      "type": "object",
+      "required": true,
+      "description": "验收规则",
+      "example": {
+        "type": "file_exists",
+        "field": "output_pdf"
+      },
+      "constraints": "JSON 格式"
+    },
+    {
+      "name": "machine_check_rules",
+      "type": "array",
+      "required": false,
+      "description": "机器检查规则",
+      "example": [{"type": "file_size", "field": "output_pdf", "min": 1000}],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "score_threshold",
+      "type": "number",
+      "required": false,
+      "description": "评分阈值 (0-100)",
+      "example": 80,
+      "constraints": "范围 0-100"
+    },
+    {
+      "name": "fail_conditions",
+      "type": "array",
+      "required": false,
+      "description": "失败条件",
+      "example": ["output_file_missing", "runtime_exceeded"],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "pricing_template",
+      "type": "object",
+      "required": false,
+      "description": "定价模板",
+      "example": {"base_price": 50, "per_minute": 0.5},
+      "constraints": "对象类型"
+    },
+    {
+      "name": "settlement_template",
+      "type": "object",
+      "required": false,
+      "description": "结算模板",
+      "example": {"fee_percent": 5},
+      "constraints": "对象类型"
+    },
+    {
+      "name": "refund_policy",
+      "type": "string",
+      "required": false,
+      "description": "退款政策",
+      "example": "失败时全额退款",
+      "constraints": "描述性文本"
+    },
+    {
+      "name": "applicable_order_templates",
+      "type": "array",
+      "required": true,
+      "description": "适用的订单模板",
+      "example": ["ecom_onboarding", "image_pipeline"],
+      "constraints": "至少包含一个"
+    },
+    {
+      "name": "compatible_node_tags",
+      "type": "array",
+      "required": true,
+      "description": "兼容的节点标签",
+      "example": ["gimp", "libreoffice", "image_processing"],
+      "constraints": "至少包含一个"
+    },
+    {
+      "name": "current_version",
+      "type": "string",
+      "required": true,
+      "description": "当前版本",
+      "example": "0.1",
+      "constraints": "语义化版本"
+    },
+    {
+      "name": "deprecated_flag",
+      "type": "boolean",
+      "required": false,
+      "description": "是否弃用",
+      "example": false,
+      "constraints": "布尔值"
+    },
+    {
+      "name": "change_log",
+      "type": "array",
+      "required": false,
+      "description": "变更日志",
+      "example": [{"version": "0.1", "date": "2026-03-15", "changes": "初始版本"}],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "last_verified_at",
+      "type": "string",
+      "required": false,
+      "description": "最后验证时间",
+      "example": "2026-03-15T01:30:00Z",
+      "constraints": "ISO 8601 格式"
+    }
+  ],
+  "required_fields": [
+    "workflow_id",
+    "workflow_name",
+    "owner_name",
+    "category",
+    "description",
+    "version",
+    "whitelist_status",
+    "input_schema",
+    "required_input_fields",
+    "output_schema",
+    "required_output_fields",
+    "output_format",
+    "execution_steps_summary",
+    "expected_runtime_seconds",
+    "timeout_limit_seconds",
+    "acceptance_rules",
+    "applicable_order_templates",
+    "compatible_node_tags",
+    "current_version"
+  ],
+  "validation_rules": {
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1,
+      "error": "workflow_id 必须为非空字符串"
+    },
+    "whitelist_status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected", "suspended"],
+      "error": "whitelist_status 必须是 pending/approved/rejected/suspended 之一"
+    },
+    "expected_runtime_seconds": {
+      "type": "number",
+      "minimum": 0.001,
+      "error": "expected_runtime_seconds 必须大于 0"
+    },
+    "timeout_limit_seconds": {
+      "type": "number",
+      "minimum": 0.001,
+      "error": "timeout_limit_seconds 必须大于 0"
+    },
+    "required_input_fields": {
+      "type": "array",
+      "minItems": 1,
+      "error": "required_input_fields 至少包含一个字段"
+    },
+    "required_output_fields": {
+      "type": "array",
+      "minItems": 1,
+      "error": "required_output_fields 至少包含一个字段"
+    },
+    "applicable_order_templates": {
+      "type": "array",
+      "minItems": 1,
+      "error": "applicable_order_templates 至少包含一个"
+    },
+    "compatible_node_tags": {
+      "type": "array",
+      "minItems": 1,
+      "error": "compatible_node_tags 至少包含一个"
+    },
+    "score_threshold": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "error": "score_threshold 必须在 0-100 之间"
+    },
+    "deprecated_flag": {
+      "type": "boolean",
+      "error": "deprecated_flag 必须为布尔值"
+    }
+  },
+  "sample_workflow_asset_card": {
+    "workflow_id": "OCAX-WF-ecom-onboarding-001",
+    "workflow_name": "电商上新工作流",
+    "owner_name": "TG_User_Jiahui",
+    "category": "ecommerce",
+    "description": "将商品图片处理后插入到确认单模板中，生成 PDF 确认单",
+    "version": "0.1",
+    "whitelist_status": "approved",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "source_image": {"type": "string", "description": "原始图片路径"},
+        "target_width": {"type": "integer", "description": "目标宽度"},
+        "product_name": {"type": "string", "description": "商品名称"},
+        "product_sku": {"type": "string", "description": "商品SKU"}
+      },
+      "required": ["source_image"]
+    },
+    "required_input_fields": ["source_image"],
+    "optional_input_fields": ["target_width", "product_name", "product_sku"],
+    "input_examples": [
+      {"source_image": "D:/products/test.jpg", "target_width": 800, "product_name": "测试商品"}
+    ],
+    "input_validation_rules": {
+      "source_image": "required,file_exists"
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "output_pdf": {"type": "string", "description": "输出PDF路径"},
+        "page_count": {"type": "integer", "description": "页数"}
+      }
+    },
+    "required_output_fields": ["output_pdf"],
+    "output_format": "PDF",
+    "output_examples": [
+      {"output_pdf": "D:/output/confirm_001.pdf", "page_count": 1}
+    ],
+    "execution_steps_summary": "1. GIMP 缩放图片至目标宽度 2. LibreOffice 插入图片到模板 3. 导出 PDF",
+    "expected_runtime_seconds": 120,
+    "timeout_limit_seconds": 300,
+    "retry_policy": {"max_retries": 3, "backoff_seconds": 10},
+    "idempotency_rule": "相同 source_image 产生相同输出",
+    "acceptance_rules": {
+      "type": "all_of",
+      "rules": [
+        {"type": "file_exists", "field": "output_pdf"},
+        {"type": "file_size", "field": "output_pdf", "min": 1000}
+      ]
+    },
+    "machine_check_rules": [
+      {"type": "file_size", "field": "output_pdf", "min": 1000},
+      {"type": "pdf_pages", "field": "output_pdf", "min": 1}
+    ],
+    "score_threshold": 80,
+    "fail_conditions": ["output_file_missing", "runtime_exceeded", "process_error"],
+    "pricing_template": {"base_price": 50, "per_minute": 0.5},
+    "settlement_template": {"fee_percent": 5},
+    "refund_policy": "执行失败时全额退款",
+    "applicable_order_templates": ["ecom_onboarding", "image_pipeline"],
+    "compatible_node_tags": ["gimp", "libreoffice", "image_processing", "automation"],
+    "current_version": "0.1",
+    "deprecated_flag": false,
+    "change_log": [
+      {"version": "0.1", "date": "2026-03-15", "changes": "初始版本"}
+    ],
+    "last_verified_at": "2026-03-15T01:35:00Z"
+  }
+}

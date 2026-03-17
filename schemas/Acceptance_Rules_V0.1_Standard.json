@@ -1,0 +1,373 @@
+{
+  "schema_name": "OCAX_Acceptance_Rules",
+  "version": "0.1",
+  "description": "OCAX 自动验收系统标准规则协议。定义订单执行结果的自动检查、评分、失败条件与重试判断。",
+  "fields": [
+    {
+      "name": "acceptance_rule_id",
+      "type": "string",
+      "required": true,
+      "description": "验收规则唯一标识符",
+      "example": "OCAX-AR-ecom-onboarding-001",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "workflow_id",
+      "type": "string",
+      "required": true,
+      "description": "关联的 Workflow Asset Card ID",
+      "example": "OCAX-WF-ecom-onboarding-001",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "workflow_version",
+      "type": "string",
+      "required": false,
+      "description": "Workflow 版本",
+      "example": "0.1",
+      "constraints": "语义化版本"
+    },
+    {
+      "name": "rule_set_name",
+      "type": "string",
+      "required": true,
+      "description": "规则集名称",
+      "example": "电商上新工作流验收规则",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "whitelist_status",
+      "type": "string",
+      "required": true,
+      "description": "白名单状态",
+      "example": "approved",
+      "constraints": "枚举值: pending/approved/rejected/suspended"
+    },
+    {
+      "name": "target_output_schema",
+      "type": "object",
+      "required": true,
+      "description": "目标输出 Schema",
+      "example": {"type": "object", "properties": {"output_pdf": {"type": "string"}}},
+      "constraints": "JSON Schema 格式"
+    },
+    {
+      "name": "required_output_fields",
+      "type": "array",
+      "required": true,
+      "description": "必填输出字段",
+      "example": ["output_pdf", "page_count"],
+      "constraints": "至少包含一个"
+    },
+    {
+      "name": "optional_output_fields",
+      "type": "array",
+      "required": false,
+      "description": "可选输出字段",
+      "example": ["thumbnail", "metadata"],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "file_type_requirements",
+      "type": "array",
+      "required": false,
+      "description": "文件类型要求",
+      "example": [{"field": "output_pdf", "types": ["pdf"]}],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "required_artifacts",
+      "type": "array",
+      "required": false,
+      "description": "必需的产物",
+      "example": ["main_output", "log_file"],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "machine_check_rules",
+      "type": "array",
+      "required": true,
+      "description": "机器检查规则列表",
+      "example": [
+        {"type": "file_exists", "field": "output_pdf"},
+        {"type": "file_size", "field": "output_pdf", "min": 1000},
+        {"type": "pdf_pages", "field": "output_pdf", "min": 1}
+      ],
+      "constraints": "至少包含一个"
+    },
+    {
+      "name": "field_completeness_rules",
+      "type": "array",
+      "required": false,
+      "description": "字段完整性规则",
+      "example": [
+        {"field": "output_pdf", "required": true},
+        {"field": "page_count", "required": true}
+      ],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "format_validation_rules",
+      "type": "array",
+      "required": false,
+      "description": "格式验证规则",
+      "example": [
+        {"field": "email", "type": "email"},
+        {"field": "url", "type": "url"}
+      ],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "threshold_rules",
+      "type": "array",
+      "required": false,
+      "description": "阈值规则",
+      "example": [
+        {"field": "file_size", "min": 1000, "max": 10000000}
+      ],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "consistency_rules",
+      "type": "array",
+      "required": false,
+      "description": "一致性规则",
+      "example": [
+        {"field_a": "page_count", "field_b": "page_count_manual", "relation": "eq"}
+      ],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "score_threshold",
+      "type": "number",
+      "required": true,
+      "description": "通过评分阈值 (0-100)",
+      "example": 80,
+      "constraints": "范围 0-100"
+    },
+    {
+      "name": "scoring_weights",
+      "type": "object",
+      "required": false,
+      "description": "评分权重",
+      "example": {"file_exists": 40, "format_valid": 30, "threshold_met": 30},
+      "constraints": "权重总和应为 100"
+    },
+    {
+      "name": "pass_conditions",
+      "type": "array",
+      "required": true,
+      "description": "通过条件",
+      "example": ["score >= 80", "all_required_fields_present"],
+      "constraints": "至少包含一个"
+    },
+    {
+      "name": "fail_conditions",
+      "type": "array",
+      "required": true,
+      "description": "失败条件",
+      "example": ["required_file_missing", "score < 60"],
+      "constraints": "至少包含一个"
+    },
+    {
+      "name": "retryable_fail_conditions",
+      "type": "array",
+      "required": false,
+      "description": "可重试的失败条件",
+      "example": ["timeout", "temporary_file_lock"],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "manual_review_conditions",
+      "type": "array",
+      "required": false,
+      "description": "需要人工审核的条件",
+      "example": ["score between 60-80", "ambiguous_result"],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "acceptance_timeout_seconds",
+      "type": "number",
+      "required": false,
+      "description": "验收超时时间 (秒)",
+      "example": 60,
+      "constraints": "必须大于 0"
+    },
+    {
+      "name": "report_template",
+      "type": "object",
+      "required": false,
+      "description": "报告模板",
+      "example": {"fields": ["score", "checks", "recommendations"]},
+      "constraints": "对象类型"
+    },
+    {
+      "name": "generated_report_fields",
+      "type": "array",
+      "required": false,
+      "description": "生成的报告字段",
+      "example": ["acceptance_score", "check_results", "pass_fail", "timestamp"],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "last_verified_at",
+      "type": "string",
+      "required": false,
+      "description": "最后验证时间",
+      "example": "2026-03-15T01:44:00Z",
+      "constraints": "ISO 8601 格式"
+    },
+    {
+      "name": "deprecated_flag",
+      "type": "boolean",
+      "required": false,
+      "description": "是否弃用",
+      "example": false,
+      "constraints": "布尔值"
+    }
+  ],
+  "required_fields": [
+    "acceptance_rule_id",
+    "workflow_id",
+    "rule_set_name",
+    "whitelist_status",
+    "target_output_schema",
+    "required_output_fields",
+    "machine_check_rules",
+    "score_threshold",
+    "pass_conditions",
+    "fail_conditions"
+  ],
+  "validation_rules": {
+    "acceptance_rule_id": {
+      "type": "string",
+      "minLength": 1,
+      "error": "acceptance_rule_id 不能为空"
+    },
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1,
+      "error": "workflow_id 不能为空"
+    },
+    "whitelist_status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected", "suspended"],
+      "error": "whitelist_status 必须是有效枚举值"
+    },
+    "required_output_fields": {
+      "type": "array",
+      "minItems": 1,
+      "error": "required_output_fields 至少包含一个"
+    },
+    "machine_check_rules": {
+      "type": "array",
+      "minItems": 1,
+      "error": "machine_check_rules 至少包含一个"
+    },
+    "score_threshold": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "error": "score_threshold 必须在 0-100 之间"
+    },
+    "pass_conditions": {
+      "type": "array",
+      "minItems": 1,
+      "error": "pass_conditions 至少包含一个"
+    },
+    "fail_conditions": {
+      "type": "array",
+      "minItems": 1,
+      "error": "fail_conditions 至少包含一个"
+    },
+    "retryable_fail_conditions": {
+      "type": "array",
+      "error": "retryable_fail_conditions 必须是数组"
+    },
+    "manual_review_conditions": {
+      "type": "array",
+      "error": "manual_review_conditions 必须是数组"
+    },
+    "acceptance_timeout_seconds": {
+      "type": "number",
+      "minimum": 0.001,
+      "error": "acceptance_timeout_seconds 必须大于 0"
+    },
+    "deprecated_flag": {
+      "type": "boolean",
+      "error": "deprecated_flag 必须为布尔值"
+    }
+  },
+  "sample_acceptance_rule_set": {
+    "acceptance_rule_id": "OCAX-AR-ecom-onboarding-001",
+    "workflow_id": "OCAX-WF-ecom-onboarding-001",
+    "workflow_version": "0.1",
+    "rule_set_name": "电商上新工作流验收规则",
+    "whitelist_status": "approved",
+    "target_output_schema": {
+      "type": "object",
+      "properties": {
+        "output_pdf": {"type": "string"},
+        "page_count": {"type": "integer"}
+      }
+    },
+    "required_output_fields": ["output_pdf", "page_count"],
+    "optional_output_fields": ["thumbnail", "metadata"],
+    "file_type_requirements": [
+      {"field": "output_pdf", "types": ["pdf"]}
+    ],
+    "required_artifacts": ["main_output"],
+    "machine_check_rules": [
+      {"type": "file_exists", "field": "output_pdf", "weight": 40},
+      {"type": "file_size", "field": "output_pdf", "min": 1000, "max": 10000000, "weight": 20},
+      {"type": "pdf_pages", "field": "page_count", "min": 1, "weight": 20},
+      {"type": "field_present", "field": "page_count", "weight": 20}
+    ],
+    "field_completeness_rules": [
+      {"field": "output_pdf", "required": true},
+      {"field": "page_count", "required": true}
+    ],
+    "format_validation_rules": [],
+    "threshold_rules": [
+      {"field": "file_size", "min": 1000, "max": 10000000}
+    ],
+    "consistency_rules": [],
+    "score_threshold": 80,
+    "scoring_weights": {
+      "file_exists": 40,
+      "file_size": 20,
+      "pdf_pages": 20,
+      "field_present": 20
+    },
+    "pass_conditions": [
+      "score >= 80",
+      "all_required_fields_present",
+      "no_critical_failures"
+    ],
+    "fail_conditions": [
+      "required_file_missing",
+      "score < 60",
+      "invalid_format"
+    ],
+    "retryable_fail_conditions": [
+      "temporary_file_lock",
+      "resource_temporarily_unavailable"
+    ],
+    "manual_review_conditions": [
+      "score between 60-80",
+      "edge_case_detected"
+    ],
+    "acceptance_timeout_seconds": 60,
+    "report_template": {
+      "fields": ["acceptance_score", "check_results", "pass_fail", "timestamp"]
+    },
+    "generated_report_fields": [
+      "acceptance_score",
+      "check_results",
+      "pass_fail",
+      "timestamp"
+    ],
+    "last_verified_at": "2026-03-15T01:44:00Z",
+    "deprecated_flag": false
+  }
+}

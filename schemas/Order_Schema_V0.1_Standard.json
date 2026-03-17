@@ -1,0 +1,408 @@
+{
+  "schema_name": "OCAX_Order_Schema",
+  "version": "0.1",
+  "description": "OCAX 交易系统标准订单协议。连接 Workflow Asset Card 与 Node Capability Card，为自动验收和托管结算提供结构基础。",
+  "fields": [
+    {
+      "name": "order_id",
+      "type": "string",
+      "format": "uuid",
+      "required": true,
+      "description": "订单唯一标识符，必须使用 UUID",
+      "example": "550e8400-e29b-41d4-a716-446655440001",
+      "constraints": "必须为有效的 UUID v4 格式"
+    },
+    {
+      "name": "order_template_id",
+      "type": "string",
+      "required": true,
+      "description": "订单模板 ID",
+      "example": "ecom_onboarding",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "workflow_id",
+      "type": "string",
+      "required": true,
+      "description": "引用的 Workflow Asset Card ID",
+      "example": "OCAX-WF-ecom-onboarding-001",
+      "constraints": "必须与 Workflow Asset Card 一致"
+    },
+    {
+      "name": "customer_id",
+      "type": "string",
+      "required": true,
+      "description": "买家客户 ID",
+      "example": "TG_User_Jiahui",
+      "constraints": "不能为空"
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": true,
+      "description": "订单状态",
+      "example": "paid",
+      "constraints": "枚举值: draft/pending_payment/paid/pending_dispatch/dispatched/running/output_submitted/auto_review_passed/auto_review_failed/settled/refunded/cancelled"
+    },
+    {
+      "name": "created_at",
+      "type": "string",
+      "required": true,
+      "description": "订单创建时间",
+      "example": "2026-03-15T01:39:00Z",
+      "constraints": "ISO 8601 格式"
+    },
+    {
+      "name": "input_payload",
+      "type": "object",
+      "required": true,
+      "description": "订单输入参数，必须符合 Workflow 的 input_schema",
+      "example": {"source_image": "D:/products/test.jpg", "target_width": 800},
+      "constraints": "必须符合引用的 Workflow Asset Card 的 input_schema"
+    },
+    {
+      "name": "parameter_version",
+      "type": "string",
+      "required": false,
+      "description": "参数版本",
+      "example": "0.1",
+      "constraints": "语义化版本"
+    },
+    {
+      "name": "attached_assets",
+      "type": "array",
+      "required": false,
+      "description": "附加的资产文件列表",
+      "example": [{"type": "image", "path": "D:/assets/logo.png"}],
+      "constraints": "可选"
+    },
+    {
+      "name": "validation_status",
+      "type": "string",
+      "required": false,
+      "description": "输入参数验证状态",
+      "example": "passed",
+      "constraints": "passed/failed/pending"
+    },
+    {
+      "name": "priority",
+      "type": "integer",
+      "required": false,
+      "description": "订单优先级 (0-10, 10 最高)",
+      "example": 5,
+      "constraints": "范围 0-10"
+    },
+    {
+      "name": "nodes_required",
+      "type": "integer",
+      "required": false,
+      "description": "需要的节点数量",
+      "example": 1,
+      "constraints": "大于等于 1"
+    },
+    {
+      "name": "required_node_tags",
+      "type": "array",
+      "required": false,
+      "description": "要求的节点标签",
+      "example": ["gimp", "image_processing"],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "assigned_node_id",
+      "type": "string",
+      "required": false,
+      "description": "已分配的节点 ID",
+      "example": "OCAX-NODE-20260315-001",
+      "constraints": "节点分配后填充"
+    },
+    {
+      "name": "fallback_node_ids",
+      "type": "array",
+      "required": false,
+      "description": "备用节点 ID 列表",
+      "example": ["OCAX-NODE-20260315-002", "OCAX-NODE-20260315-003"],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "dispatch_strategy",
+      "type": "string",
+      "required": false,
+      "description": "派单策略",
+      "example": "optimal_match",
+      "constraints": "optimal_match/priority_first/fallback轮询"
+    },
+    {
+      "name": "retry_count",
+      "type": "integer",
+      "required": false,
+      "description": "已重试次数",
+      "example": 0,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "max_latency_seconds",
+      "type": "number",
+      "required": false,
+      "description": "最大延迟容忍 (秒)",
+      "example": 300,
+      "constraints": "必须大于 0"
+    },
+    {
+      "name": "auth_token",
+      "type": "string",
+      "required": false,
+      "description": "授权令牌",
+      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "constraints": "JWT 格式"
+    },
+    {
+      "name": "execution_id",
+      "type": "string",
+      "required": false,
+      "description": "执行实例 ID",
+      "example": "OCAX-EXEC-20260315-001",
+      "constraints": "执行开始后填充"
+    },
+    {
+      "name": "started_at",
+      "type": "string",
+      "required": false,
+      "description": "任务开始时间",
+      "example": "2026-03-15T01:40:00Z",
+      "constraints": "ISO 8601 格式"
+    },
+    {
+      "name": "completed_at",
+      "type": "string",
+      "required": false,
+      "description": "任务完成时间",
+      "example": "2026-03-15T01:42:00Z",
+      "constraints": "ISO 8601 格式"
+    },
+    {
+      "name": "execution_logs",
+      "type": "array",
+      "required": false,
+      "description": "执行日志",
+      "example": [{"timestamp": "2026-03-15T01:40:00Z", "message": "Task started"}],
+      "constraints": "数组类型"
+    },
+    {
+      "name": "output_payload",
+      "type": "object",
+      "required": false,
+      "description": "订单输出参数，必须符合 Workflow 的 output_schema",
+      "example": {"output_pdf": "D:/output/confirm_001.pdf", "page_count": 1},
+      "constraints": "必须符合引用的 Workflow Asset Card 的 output_schema"
+    },
+    {
+      "name": "acceptance_status",
+      "type": "string",
+      "required": false,
+      "description": "验收状态",
+      "example": "auto_review_passed",
+      "constraints": "pending/auto_review_passed/auto_review_failed/manual_review_required"
+    },
+    {
+      "name": "acceptance_score",
+      "type": "number",
+      "required": false,
+      "description": "验收评分 (0-100)",
+      "example": 95,
+      "constraints": "范围 0-100"
+    },
+    {
+      "name": "acceptance_report",
+      "type": "object",
+      "required": false,
+      "description": "验收报告",
+      "example": {"checks": [{"name": "file_exists", "passed": true}]},
+      "constraints": "对象类型"
+    },
+    {
+      "name": "fail_reason",
+      "type": "string",
+      "required": false,
+      "description": "失败原因",
+      "example": "output_file_missing",
+      "constraints": "失败时填充"
+    },
+    {
+      "name": "order_price",
+      "type": "number",
+      "required": true,
+      "description": "订单价格 (Tokens)",
+      "example": 50,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "escrow_amount",
+      "type": "number",
+      "required": false,
+      "description": "托管金额 (Tokens)",
+      "example": 50,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "settlement_amount",
+      "type": "number",
+      "required": false,
+      "description": "结算金额 (Tokens)",
+      "example": 47.5,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "platform_fee",
+      "type": "number",
+      "required": false,
+      "description": "平台手续费 (Tokens)",
+      "example": 2.5,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "refund_amount",
+      "type": "number",
+      "required": false,
+      "description": "退款金额 (Tokens)",
+      "example": 0,
+      "constraints": "大于等于 0"
+    },
+    {
+      "name": "settlement_status",
+      "type": "string",
+      "required": false,
+      "description": "结算状态",
+      "example": "released",
+      "constraints": "枚举值: pending/held_in_escrow/released/refunded/cancelled"
+    }
+  ],
+  "required_fields": [
+    "order_id",
+    "order_template_id",
+    "workflow_id",
+    "customer_id",
+    "status",
+    "created_at",
+    "input_payload",
+    "order_price"
+  ],
+  "validation_rules": {
+    "order_id": {
+      "type": "string",
+      "format": "uuid",
+      "error": "order_id 必须为有效的 UUID 格式"
+    },
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1,
+      "error": "workflow_id 不能为空"
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "error": "priority 必须在 0-10 之间"
+    },
+    "nodes_required": {
+      "type": "integer",
+      "minimum": 1,
+      "error": "nodes_required 必须大于等于 1"
+    },
+    "required_node_tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "error": "required_node_tags 必须是数组"
+    },
+    "fallback_node_ids": {
+      "type": "array",
+      "items": {"type": "string"},
+      "error": "fallback_node_ids 必须是数组"
+    },
+    "max_latency_seconds": {
+      "type": "number",
+      "minimum": 0.001,
+      "error": "max_latency_seconds 必须大于 0"
+    },
+    "acceptance_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "error": "acceptance_score 必须在 0-100 之间"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "pending_payment", "paid", "pending_dispatch", "dispatched", "running", "output_submitted", "auto_review_passed", "auto_review_failed", "settled", "refunded", "cancelled"],
+      "error": "status 必须是有效枚举值之一"
+    },
+    "settlement_status": {
+      "type": "string",
+      "enum": ["pending", "held_in_escrow", "released", "refunded", "cancelled"],
+      "error": "settlement_status 必须是有效枚举值之一"
+    },
+    "order_price": {
+      "type": "number",
+      "minimum": 0,
+      "error": "order_price 必须大于等于 0"
+    },
+    "escrow_amount": {
+      "type": "number",
+      "minimum": 0,
+      "error": "escrow_amount 必须大于等于 0"
+    },
+    "settlement_amount": {
+      "type": "number",
+      "minimum": 0,
+      "error": "settlement_amount 必须大于等于 0"
+    },
+    "platform_fee": {
+      "type": "number",
+      "minimum": 0,
+      "error": "platform_fee 必须大于等于 0"
+    },
+    "refund_amount": {
+      "type": "number",
+      "minimum": 0,
+      "error": "refund_amount 必须大于等于 0"
+    }
+  },
+  "sample_order": {
+    "order_id": "550e8400-e29b-41d4-a716-446655440001",
+    "order_template_id": "ecom_onboarding",
+    "workflow_id": "OCAX-WF-ecom-onboarding-001",
+    "customer_id": "TG_User_Jiahui",
+    "status": "paid",
+    "created_at": "2026-03-15T01:39:00Z",
+    "input_payload": {
+      "source_image": "D:/products/test.jpg",
+      "target_width": 800,
+      "product_name": "测试商品"
+    },
+    "parameter_version": "0.1",
+    "attached_assets": [],
+    "validation_status": "passed",
+    "priority": 5,
+    "nodes_required": 1,
+    "required_node_tags": ["gimp", "image_processing"],
+    "assigned_node_id": "OCAX-NODE-20260315-001",
+    "fallback_node_ids": ["OCAX-NODE-20260315-002"],
+    "dispatch_strategy": "optimal_match",
+    "retry_count": 0,
+    "max_latency_seconds": 300,
+    "execution_id": null,
+    "started_at": null,
+    "completed_at": null,
+    "execution_logs": [],
+    "output_payload": null,
+    "acceptance_status": null,
+    "acceptance_score": null,
+    "acceptance_report": null,
+    "fail_reason": null,
+    "order_price": 50,
+    "escrow_amount": 50,
+    "settlement_amount": 0,
+    "platform_fee": 0,
+    "refund_amount": 0,
+    "settlement_status": "pending"
+  }
+}
