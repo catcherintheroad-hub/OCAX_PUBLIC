@@ -41,6 +41,7 @@ All public-facing documents are in the `docs/` folder:
 | OCAX_MVP_API_PUBLIC_OVERVIEW_V1.md | MVP API overview |
 | OCAX_MVP_PAGE_SPECS_PUBLIC_V1.md | MVP page specs |
 | OCAX_MVP_FLOW_PUBLIC_V1.md | MVP user flows |
+| OCAX_MVP_TECH_OVERVIEW_V1.md | MVP technical overview |
 
 ---
 
@@ -64,8 +65,22 @@ X/Twitter launch materials are in `release/`:
 | Positioning | Reset complete |
 | Core architecture | Defined |
 | MVP design | Complete |
+| Technical plan | Defined |
 | Public launch materials | Ready |
 | X/Twitter presence | Not started |
+
+---
+
+## Implementation Plan
+
+| Phase | What | Timeline |
+|-------|------|----------|
+| Week 1 | Foundation + Admin | Build |
+| Week 2 | Node Provider + Tasks | Build |
+| Week 3 | Checkpoints + Settlement | Build |
+| Week 4 | Polish + Deploy | Launch |
+
+**Tech stack**: Next.js + SQLite + Vercel + Railway
 
 ---
 
