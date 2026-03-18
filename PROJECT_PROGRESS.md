@@ -81,6 +81,13 @@
 
 ---
 
+## Architecture
+
+| Item | Status | Notes |
+|------|--------|-------|
+| Trust Model | ✅ V1 Internal | Semi-trusted whitelist pool |
+| Trust Model Public | ✅ V1 Public | Public summary |
+
 ## Git Commits
 
 | Date | Commit | Files |
@@ -88,6 +95,7 @@
 | 2026-03-18 | Positioning reset V2 | Multiple docs + README |
 | 2026-03-18 | Messaging guardrails | OCAX_MESSAGING_GUARDRAILS_V1.md |
 | 2026-03-18 | X packs V2 | launch/profile/reply/7day |
+| 2026-03-18 | Trust model V1 | Internal + public version |
 
 ---
 
