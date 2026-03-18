@@ -1,6 +1,6 @@
 # OCAX Node Reputation & Settlement - Public Summary v1
 
-**Version**: 1.0  
+**Version**: 1.1 (Corrected)  
 **Type**: Public Overview  
 **Date**: 2026-03-18
 
@@ -8,10 +8,27 @@
 
 ## Overview
 
-OCAX has a clear system for node reputation and task payment. This ensures:
-- Reliable nodes earn more
-- Task requesters get quality work
-- Payments are fair and transparent
+OCAX has a fair payment system for nodes. You get paid for the work you do, not just if you finish the whole task.
+
+---
+
+## How Payment Works
+
+### Pay for Progress, Not Just Completion
+
+| What You Do | You Get Paid |
+|------------|-------------|
+| Complete a checkpoint | ✅ Yes |
+| Finish the whole task | ✅ Yes + bonus |
+| Abandon with valid checkpoint | ✅ Paid for checkpoints done |
+| Abandon without checkpoint | ❌ No pay |
+| Work but no checkpoint saved | ❌ No pay |
+
+### Why Checkpoints Matter
+
+- Your work is saved and verified
+- Even if something happens, you get paid for what you completed
+- Checkpoints are saved to platform, not just your device
 
 ---
 
@@ -26,7 +43,19 @@ OCAX has a clear system for node reputation and task payment. This ensures:
 | Gold | Highly Trusted | Consistently excellent |
 | Platinum | Elite | Top performers |
 
-### How to Move Up
+### Higher Tier = More Access
+
+| Task Type | Bronze | Silver | Gold | Platinum |
+|-----------|--------|--------|------|----------|
+| Public tasks | ✅ | ✅ | ✅ | ✅ |
+| Internal tasks | ✅ | ✅ | ✅ | ✅ |
+| Sensitive tasks | ❌ | Limited | ✅ | ✅ |
+
+**Your reputation determines what tasks you can do, not just how much you get paid.**
+
+---
+
+## How to Move Up
 
 | To | Requirements |
 |----|--------------|
@@ -36,27 +65,7 @@ OCAX has a clear system for node reputation and task payment. This ensures:
 
 ---
 
-## What Each Tier Can Do
-
-| Task Type | Bronze | Silver | Gold | Platinum |
-|-----------|--------|--------|------|----------|
-| Public tasks | ✅ | ✅ | ✅ | ✅ |
-| Internal tasks | ✅ | ✅ | ✅ | ✅ |
-| Sensitive tasks | ❌ | Limited | ✅ | ✅ |
-
----
-
-## How Payment Works
-
-### Payment for Completed Work Only
-
-| Scenario | Who Gets Paid |
-|----------|--------------|
-| Task completed | Node gets paid |
-| Task abandoned | Node gets 0 |
-| Task handed off | Only completing node gets paid |
-
-### Payment Timing
+## Payment Timing
 
 | Tier | Payout Timing |
 |------|--------------|
@@ -78,21 +87,19 @@ OCAX has a clear system for node reputation and task payment. This ensures:
 
 ---
 
-## How to Build Reputation
+## Key Rules
 
 ### Do This
 
-- Complete tasks successfully
-- Stay online and reliable
-- Accept tasks you're confident about
-- Deliver quality outputs
+- Save checkpoints regularly
+- Complete tasks you start
+- Build your reputation tier
 
 ### Don't Do This
 
-- Abandon tasks mid-way
-- Accept more than you can handle
-- Submit low-quality work
-- Go offline frequently
+- Abandon tasks without saving checkpoints
+- Accept tasks you can't complete
+- Work offline without saving progress
 
 ---
 
@@ -100,11 +107,11 @@ OCAX has a clear system for node reputation and task payment. This ensures:
 
 | Element | How It Works |
 |---------|--------------|
-| Payment | Per completed task |
-| Reputation | 4 tiers (Bronze → Platinum) |
+| Payment basis | Per checkpoint + completion bonus |
+| Abandon with checkpoint | Paid for work done |
+| Abandon without checkpoint | Not paid |
+| Reputation = access | Higher tier = more tasks |
 | Promotion | Based on completion rate |
-| Demotion | Based on abandonment rate |
-| Handoff | Only completing node gets paid |
 
 ---
 
