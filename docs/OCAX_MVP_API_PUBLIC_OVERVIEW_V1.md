@@ -87,12 +87,21 @@ OCAX MVP uses a simple REST API for the task collaboration network.
 
 | Element | Value |
 |---------|-------|
-| Core APIs | 15 |
+| Core APIs | 18 |
 | Auth | 3 |
-| Node | 4 |
+| Node | 5 |
 | Task | 3 |
+| TaskAssignment | 3 |
 | Checkpoint | 2 |
-| Settlement | 3 |
+| Settlement | 2 |
+
+### New APIs Added (v1.1)
+
+| API | Purpose |
+|-----|---------|
+| PATCH /nodes/:id/status | Admin controls node status |
+| POST /task-assignments | Admin manual assignment/handoff |
+| GET /nodes/:id | Admin views node details |
 
 ---
 
