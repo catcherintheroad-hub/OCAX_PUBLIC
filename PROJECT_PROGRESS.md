@@ -1,94 +1,71 @@
-# OCAX Project Progress Tracker
+# OCAX Project Progress
 
 **Last Updated**: 2026-03-18
 
 ---
 
-## Project Status
+## What is OCAX?
 
-| Category | Status | Notes |
-|----------|--------|-------|
-| Public Repo | ✅ Live | https://github.com/catcherintheroad-hub/OCAX_PUBLIC |
-| Positioning | ✅ Reset V2 | New direction: task collaboration network |
-| README | ✅ Updated | New positioning applied |
-| X Launch Pack | ✅ V2 Ready | 20 posts, 5 scenarios |
-| X Profile | ✅ V2 Ready | Name/bio/banner/pin |
-| X Reply Pack | ✅ V2 Ready | 75 replies across 5 scenarios |
-| X 7-Day Plan | ✅ V2 Ready | Day-by-day execution |
-| Messaging Guardrails | ✅ V1 | 20 rules, unified standards |
-
----
-
-## Positioning Reset V2
-
-**Completed**: 2026-03-18
-
-### Core Message
+OCAX is a task collaboration network that connects people who need computing power with people who have idle devices.
 
 > Your idle device runs real tasks. You earn money.
 
-### Stopped Using
+---
 
-- ❌ "AI says 'I'm done.'"
-- ❌ "AI verification"
-- ❌ "Verification layer"
-- ❌ "Validator" / "Node" / "Mining"
+## Current Positioning
 
-### Now Using
-
-- ✅ Idle devices
-- ✅ Real tasks
-- ✅ Task collaboration network
-- ✅ Earn money
-- ✅ Real work
+| Topic | Status |
+|-------|--------|
+| Direction | Idle device marketplace / Task collaboration network |
+| Node Model | Whitelist-based (not open market) |
+| Verification | Checkpoint-based progress tracking |
+| Settlement | Per-checkpoint payments + completion bonus |
 
 ---
 
-## MVP Architecture
+## Public Documentation
 
-### Architecture Docs (Public)
+All public-facing documents are in the `docs/` folder:
 
-| File | Status |
+| File | Topic |
+|------|-------|
+| README.md | Project overview |
+| OCAX_TRUST_MODEL_PUBLIC_V1.md | How we handle node trust |
+| OCAX_TASK_CLASSIFICATION_PUBLIC_V1.md | Task sensitivity levels |
+| OCAX_TASK_STATE_MACHINE_PUBLIC_V1.md | How tasks progress and recover |
+| OCAX_PERMISSION_AND_DATA_PROTECTION_PUBLIC_V1.md | Data and permission model |
+| OCAX_NODE_REPUTATION_AND_SETTLEMENT_PUBLIC_V1.md | Node reputation and payments |
+| OCAX_MVP_PUBLIC_OVERVIEW_V1.md | MVP product summary |
+| OCAX_MVP_STRUCTURE_PUBLIC_V1.md | MVP structure and pages |
+| OCAX_MVP_DATA_MODEL_PUBLIC_V1.md | MVP data model |
+| OCAX_MVP_API_PUBLIC_OVERVIEW_V1.md | MVP API overview |
+| OCAX_MVP_PAGE_SPECS_PUBLIC_V1.md | MVP page specs |
+
+---
+
+## External Communications
+
+All public posts and messaging follow:
+- OCAX_MESSAGING_GUARDRAILS_V1.md
+
+X/Twitter launch materials are in `release/`:
+- X_PROFILE_OPTIMIZATION_V2.md
+- X_LAUNCH_PACK_V2.md
+- X_REPLY_PACK_V2.md
+- X_7DAY_GROWTH_PACK_V2.md
+
+---
+
+## Status
+
+| Item | Status |
 |------|--------|
-| docs/OCAX_TRUST_MODEL_PUBLIC_V1.md | ✅ |
-| docs/OCAX_TASK_CLASSIFICATION_PUBLIC_V1.md | ✅ |
-| docs/OCAX_TASK_STATE_MACHINE_PUBLIC_V1.md | ✅ |
-| docs/OCAX_PERMISSION_AND_DATA_PROTECTION_PUBLIC_V1.md | ✅ |
-| docs/OCAX_NODE_REPUTATION_AND_SETTLEMENT_PUBLIC_V1.md | ✅ |
-| docs/OCAX_MVP_PUBLIC_OVERVIEW_V1.md | ✅ |
-| docs/OCAX_MVP_STRUCTURE_PUBLIC_V1.md | ✅ |
-| docs/OCAX_MVP_DATA_MODEL_PUBLIC_V1.md | ✅ |
-| docs/OCAX_MVP_API_PUBLIC_OVERVIEW_V1.md | ✅ |
-| docs/OCAX_MVP_PAGE_SPECS_PUBLIC_V1.md | ✅ |
+| Positioning | Reset complete |
+| Core architecture | Defined |
+| MVP design | Complete |
+| Public launch materials | Ready |
+| X/Twitter presence | Not started |
 
 ---
 
-## Next Actions
-
-### X/Twitter Launch
-
-1. Post first tweet (today)
-2. Optimize X profile
-3. Start replying to relevant posts
-
-### Week 1
-
-- Day 1: Hook post
-- Day 2: Explain post
-- Day 3: Value post
-- Day 4: Trust post
-- Day 5: Builder post
-- Day 6: Proof post
-- Day 7: Engage post
-
----
-
-## Notes
-
-- Public repo is the source of truth for external communications
-- All public content must follow OCAX_MESSAGING_GUARDRAILS_V1.md
-- Zero-follower cold start strategy: question hooks + honest tone
-
----
-
-*Progress Tracker v1*
+*This file reflects public-facing project status only. Internal progress is tracked in the private repository.*
