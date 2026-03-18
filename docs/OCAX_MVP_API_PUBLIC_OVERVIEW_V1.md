@@ -10,7 +10,7 @@
 
 OCAX MVP uses a simple REST API for the task collaboration network.
 
-**15 core APIs. No over-engineering.**
+**18 core APIs. No over-engineering.**
 
 ---
 

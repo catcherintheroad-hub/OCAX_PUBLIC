@@ -40,6 +40,7 @@ All public-facing documents are in the `docs/` folder:
 | OCAX_MVP_DATA_MODEL_PUBLIC_V1.md | MVP data model |
 | OCAX_MVP_API_PUBLIC_OVERVIEW_V1.md | MVP API overview |
 | OCAX_MVP_PAGE_SPECS_PUBLIC_V1.md | MVP page specs |
+| OCAX_MVP_FLOW_PUBLIC_V1.md | MVP user flows |
 
 ---
 
