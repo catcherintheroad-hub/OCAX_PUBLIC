@@ -1,97 +1,81 @@
 # OCAX Channel Strategy Reset v1
 
-**Version**: 1.0  
+**Version**: 2.0  
 **Purpose**: Revised Channel Strategy  
 **Last Updated**: 2026-03-18
 
 ---
 
-## Why Telegram is NOT the Main Channel
+## Current Priority
 
-### Telegram Limitations
+### ✅ X/Twitter = First传播点
+### ✅ GitHub = 承接页/证据页
+### ❌ Telegram = 当前不优先（后续社区/反馈）
 
-1. **Not discoverable** - No algorithmic reach
-2. **Private groups** - Hard to find, invite-only
-3. **Chinese audience** - Most potential users on Twitter/X
-4. **No viral effect** - Good for community, bad for awareness
+---
 
-### What Telegram IS Good For
+## Why Not Telegram Now
 
-- Community discussion (later)
-- Feedback collection (later)
-- Direct support (later)
-
-### What Telegram is NOT Good For
-
-- First impression
-- Awareness building
-- Discovery
+Telegram is:
+- Not discoverable (private groups)
+- No algorithmic reach
+- Good for community later, not for first impression
 
 ---
 
 ## Channel Roles
 
-### GitHub
-
-**Role**: Landing page / Proof page
-
-- This is where people land after clicking your links
-- Must be bilingual, simple, clear
-- This is your "home base"
-
 ### X/Twitter
 
 **Role**: First discovery / Awareness
-
-- This is where people FIRST hear about you
-- Algorithmic reach
+- This is your megaphone
 - Global audience
-- This is your "megaphone"
+- Algorithmic reach
+- Use NOW
 
-### Telegram/Discord
+### GitHub
+
+**Role**: Landing page / Proof page
+- This is your home base
+- Where links point to
+- Bilingual ready
+- Use ALWAYS
+
+### Telegram
 
 **Role**: Community / Feedback (later)
-
-- Not for initial launch
-- Good for ongoing community
-- Good for direct feedback
-- Use AFTER initial awareness
+- Not for first impression
+- Good for discussion AFTER awareness
+- Use AFTER initial launch
 
 ---
 
-## Revised 7-Day Plan
+## 7-Day Execution Plan
 
-### Day 1: X/Twitter First
+### Day 1
 
-| Channel | Action |
-|---------|--------|
-| X/Twitter | Post first tweet (problem + proof) |
-| GitHub | Ensure README is complete |
+- Post on X/Twitter (first post)
+- Verify GitHub is ready
 
-### Day 2: X/Twitter Second
+### Day 2
 
-| Channel | Action |
-|---------|--------|
-| X/Twitter | Post second tweet (progress) |
+- Post on X/Twitter (second post)
+- Monitor engagement
 
-### Day 3-4: Monitor
+### Day 3
 
-| Channel | Action |
-|---------|--------|
-| X/Twitter | Watch engagement |
-| GitHub | Update based on feedback |
+- Post on X/Twitter (third post)
+- Check GitHub traffic
 
-### Day 5: Telegram (Optional)
+### Day 4-5
 
-| Channel | Action |
-|---------|--------|
-| Telegram | Post to small circle (if ready) |
+- Monitor X engagement
+- Check GitHub visitors
 
-### Day 6-7: Respond
+### Day 6-7
 
-| Channel | Action |
-|---------|--------|
-| All | Respond to engagement |
+- Respond to engagement
+- Consider Telegram (optional)
 
 ---
 
@@ -99,40 +83,30 @@
 
 ### Do
 
-- ✅ Post on X/Twitter (this is your main channel now)
-- ✅ Point all links to GitHub
+- ✅ Post on X/Twitter
+- ✅ Link to GitHub
 - ✅ Keep language simple
 - ✅ Focus on problem + proof
 
-### Don't Do
+### Don't
 
 - ❌ Don't rely on Telegram for awareness
 - ❌ Don't post to Discord yet
 - ❌ Don't expect viral from private groups
-- ❌ Don't spend time on community channels yet
 
 ---
 
 ## Summary
 
-| Channel | Role | When |
-|--------|------|------|
-| GitHub | Landing page | Always |
-| X/Twitter | Discovery/Awareness | Now |
-| Telegram | Community/Feedback | Later |
-| Discord | Community/Feedback | Later |
+| Channel | Priority | When |
+|---------|----------|-------|
+| X/Twitter | FIRST | Now |
+| GitHub | ALWAYS | Now + Forever |
+| Telegram | LATER | After awareness |
 
 ---
 
-## Immediate Actions
-
-1. **Post on X/Twitter** - This is your megaphone
-2. **Point to GitHub** - This is your landing page
-3. **Don't worry about Telegram** - It's for later
-
----
-
-## New Channel Slogan
+## Key Message
 
 > **X/Twitter for reach. GitHub for proof. Telegram for later.**
 
