@@ -9,7 +9,7 @@
 | Category | Status | Notes |
 |----------|--------|-------|
 | Public Repo | ✅ Live | https://github.com/catcherintheroad-hub/OCAX_PUBLIC |
-| Positioning | ✅ Reset V2 | New direction: idle device marketplace |
+| Positioning | ✅ Reset V2 | New direction: task collaboration network |
 | README | ✅ Updated | New positioning applied |
 | X Launch Pack | ✅ V2 Ready | 20 posts, 5 scenarios |
 | X Profile | ✅ V2 Ready | Name/bio/banner/pin |
@@ -38,34 +38,36 @@
 
 - ✅ Idle devices
 - ✅ Real tasks
-- ✅ Computing marketplace
+- ✅ Task collaboration network
 - ✅ Earn money
 - ✅ Real work
 
 ---
 
-## Files Created/Updated
+## MVP Architecture
 
-### Public Repo (OCAX_PUBLIC)
+### Architecture Docs (Public)
 
-| File | Status | Date |
-|------|--------|------|
-| README.md | ✅ Updated | 2026-03-18 |
-| README_CN.md | ✅ Updated | 2026-03-18 |
-| docs/OCAX_POSITIONING_RESET_V2.md | ✅ Created | 2026-03-18 |
-| docs/OCAX_MESSAGING_GUARDRAILS_V1.md | ✅ Created | 2026-03-18 |
-| release/X_PROFILE_OPTIMIZATION_V2.md | ✅ Created | 2026-03-18 |
-| release/X_LAUNCH_PACK_V2.md | ✅ Created | 2026-03-18 |
-| release/X_REPLY_PACK_V2.md | ✅ Created | 2026-03-18 |
-| release/X_7DAY_GROWTH_PACK_V2.md | ✅ Created | 2026-03-18 |
+| File | Status |
+|------|--------|
+| docs/OCAX_TRUST_MODEL_PUBLIC_V1.md | ✅ |
+| docs/OCAX_TASK_CLASSIFICATION_PUBLIC_V1.md | ✅ |
+| docs/OCAX_TASK_STATE_MACHINE_PUBLIC_V1.md | ✅ |
+| docs/OCAX_PERMISSION_AND_DATA_PROTECTION_PUBLIC_V1.md | ✅ |
+| docs/OCAX_NODE_REPUTATION_AND_SETTLEMENT_PUBLIC_V1.md | ✅ |
+| docs/OCAX_MVP_PUBLIC_OVERVIEW_V1.md | ✅ |
+| docs/OCAX_MVP_STRUCTURE_PUBLIC_V1.md | ✅ |
+| docs/OCAX_MVP_DATA_MODEL_PUBLIC_V1.md | ✅ |
+| docs/OCAX_MVP_API_PUBLIC_OVERVIEW_V1.md | ✅ |
+| docs/OCAX_MVP_PAGE_SPECS_PUBLIC_V1.md | ✅ |
 
 ---
 
 ## Next Actions
 
-### Immediate
+### X/Twitter Launch
 
-1. Post first X tweet (today)
+1. Post first tweet (today)
 2. Optimize X profile
 3. Start replying to relevant posts
 
@@ -78,24 +80,6 @@
 - Day 5: Builder post
 - Day 6: Proof post
 - Day 7: Engage post
-
----
-
-## Architecture
-
-| Item | Status | Notes |
-|------|--------|-------|
-| Trust Model | ✅ V1 Internal | Semi-trusted whitelist pool |
-| Trust Model Public | ✅ V1 Public | Public summary |
-
-## Git Commits
-
-| Date | Commit | Files |
-|------|--------|-------|
-| 2026-03-18 | Positioning reset V2 | Multiple docs + README |
-| 2026-03-18 | Messaging guardrails | OCAX_MESSAGING_GUARDRAILS_V1.md |
-| 2026-03-18 | X packs V2 | launch/profile/reply/7day |
-| 2026-03-18 | Trust model V1 | Internal + public version |
 
 ---
 
