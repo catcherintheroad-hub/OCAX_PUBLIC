@@ -1,71 +1,79 @@
-# OCAX Public Showcase Repository
+# OCAX Public Companion Repository
 
-> **Important Notice**
->
-> This repository is for **external display only**.
+> Important: this repository is for public explanation and showcase materials, not for the full production application.
 
----
+## Purpose
 
-## About This Repository
+This repository exists to present OCAX publicly in a safe and understandable way.
 
-This repository contains **public-facing content** about OCAX, including:
+Its job is to help external readers understand:
 
-- Project documentation
-- Demo materials
-- Protocol schemas
-- Public announcements
+- what OCAX is
+- why it uses real computers
+- why verification matters
+- what public schemas and demo materials look like
 
-It is designed to help external people understand what OCAX is and does.
+## Current Product Position
 
----
+OCAX should be understood as:
 
-## What This Repository Contains
+> a verified OpenClaw execution network for running tasks on real computers
 
-✅ **Included:**
+This repository should follow that positioning.
+It should not present OCAX as a generic idle-device marketplace or passive-income platform.
 
-- README.md - Project introduction
-- docs/ - Project documentation
-- schemas/ - Protocol data structures
-- demo_inputs/ - Sample input files
-- demo_outputs/ - Sample output files
-- release/ - Generated release content
+## What This Repository Includes
 
----
+- public README and product explanation
+- public-facing documentation
+- schema files
+- demo inputs and outputs
+- launch and showcase materials
 
-## What This Repository Does NOT Contain
+## What This Repository Does Not Include
 
-❌ **Not Included:**
+- the full production application
+- deployment source of truth
+- internal admin or ops code
+- node operations tooling
+- private runtime data
+- production infrastructure configuration
 
-- Core execution code (src/)
-- Internal automation scripts (scripts/)
-- Node management (active_nodes/)
-- Payment integration (payment_*.py)
-- Database files (*_db.json)
-- Operations data (*.xlsx)
-- Internal infrastructure (Docker, nginx, etc.)
+## Relationship to the Main OCAX Repo
 
----
+The main OCAX repository remains the source of truth for:
 
-## Notice
+- product implementation
+- deployment
+- access flow
+- current live user experience
 
-> **This repository is a "showroom" repository, not a "development" repository.**
+This repository is the public companion layer.
 
-It is intended for:
-- External display
-- Project introduction
-- Documentation sharing
-- Demo purposes
+## Narrative Guardrail
 
-Core implementation, internal automation, node data, and sensitive configurations are kept in a separate private repository.
+If a public document in this repo conflicts with the main OCAX positioning, the main product positioning should win.
 
----
+The correct direction is:
 
-## Contact
+- verified execution network
+- real computers
+- OpenClaw task execution
+- controlled pilot access
 
-For more information about OCAX, please refer to:
-- Project documentation in docs/
-- Main README.md
+Not:
 
----
+- passive income
+- idle-device monetization as the main story
+- broad open compute marketplace framing
 
-*This repository is for display purposes only.*
+## Current Recommendation
+
+Use this repository for:
+
+- public sharing
+- public docs
+- public-safe demos
+- explaining verification and execution concepts
+
+Do not use it as the place to redefine the product story independently from the main OCAX repo.

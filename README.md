@@ -1,137 +1,124 @@
 # OCAX
 
-<!-- Three Hero Title Options -->
+> Call real computers to run OpenClaw tasks.
 
-<!-- OPTION A: Direct Money Angle -->
-<!-- # Your idle device runs real tasks. You earn money. -->
+OCAX is a verified OpenClaw execution network for running tasks on real computers.
 
-<!-- OPTION B: Problem Angle -->
-<!-- # Got a spare device? Let it work for others. -->
+Developers submit tasks, node operators provide real computers running OpenClaw, and the platform validates results and records settlement.
 
-<!-- OPTION C: Simple Statement -->
-# OCAX - Turn idle devices into computing power.
+## What OCAX Is
 
----
+OCAX is not a generic task board.
+It is not a passive-income hardware scheme.
+It is not an open compute marketplace for random spare devices.
 
-## What is OCAX?
+OCAX is a controlled execution network designed for tasks that need:
 
-**A marketplace that connects people who need computing power with people who have idle devices.**
+- real computers
+- real browser environments
+- real desktop context
+- verifiable execution results
 
-Got a spare phone, tablet, or PC you don't use 24/7?
-Connect it to OCAX. When you're not using it, your device runs real tasks for others.
-You earn money. They get work done.
+## Why Real Computers, Not Just Cloud / VPS
 
-Need more devices to handle your workload?
-Post your task on OCAX. Pay device owners for completed work.
+Some OpenClaw and browser automation tasks do not fit neatly into generic cloud instances or headless VPS workflows.
 
----
+OCAX focuses on tasks that benefit from:
 
-## Why It Matters
+- local machine context
+- real browser state
+- real desktop interaction surfaces
+- controlled validation after execution
 
-| Old Way | OCAX |
-|---------|------|
-| Devices sit idle | Devices work for you |
-| Expensive cloud services | Rent from real people |
-| One person, one machine | Pool resources together |
+This is why OCAX is better described as a verified execution network than a simple compute marketplace.
 
----
+## Why It Is Not a "Share Your Computer for Money" Platform
 
-## For Device Owners
+That framing is too broad and no longer matches the product direction.
 
-**Your device can do more.**
+OCAX does not primarily optimize for:
 
-Most devices run at 5-10% capacity. The rest is wasted.
+- passive income messaging
+- broad consumer acquisition
+- open marketplace dynamics
 
-OCAX lets you monetize that idle time.
+It is built around:
 
-- Connect your devices
-- Run real tasks when idle
-- Earn money for completed work
+- task fit
+- node quality
+- verification
+- settlement discipline
+- controlled network growth
 
-It's like renting out spare space, but for computing power.
+## Who It Is For
 
----
+OCAX is currently most relevant to:
 
-## For Builders & Professionals
+- OpenClaw advanced users
+- automation developers
+- teams that need real-computer execution
+- vetted node operators who can provide stable execution environments
 
-**Need more computing power?**
+## Controlled Pilot
 
-Don't buy more hardware. Rent it.
+OCAX is currently invite-only.
 
-- Need extra devices for a project?
-- Want to run tasks across multiple machines?
-- Short on hardware for a one-time job?
+The network is being opened carefully so the team can prioritize:
 
-OCAX lets you access computing power from connected devices.
+- execution reliability
+- node quality
+- validation quality
+- stable settlement logic
+- safer early network operations
 
-Pay for what you use. Scale up or down.
+## Core Execution Loop
 
----
-
-## This is Not a "Passive Income" Scam
-
-We know there are a lot of fake "earn money by idle computing" projects out there. Here's how OCAX is different:
-
-| Fake Projects | OCAX |
-|---------------|------|
-| Fake tasks | Real tasks from real users |
-| No clear product | Working OpenClaw integration |
-| Promise easy money | Tasks have to complete |
-| No transparency | Open source, public repo |
-
-**Your device runs real tasks. You get paid for actual work.**
-
----
-
-## What This Repo Contains
-
-This is the public showcase for OCAX.
-
-```
-/schemas        - Task and payment schemas
-/demo_inputs    - Example task inputs
-/demo_outputs   - Example task outputs
-/docs           - Project documentation (English + Chinese)
-/release        - Launch copy and messaging packs
+```text
+Caller submits task
+-> Node computer runs task with OpenClaw
+-> Platform validates outputs
+-> Settlement and records are updated
 ```
 
----
+## What This Public Repository Is
+
+This repository is the public companion repository for OCAX.
+
+It is intended for:
+
+- public product explanation
+- public-safe documentation
+- schema sharing
+- demo artifacts
+- launch and messaging materials
+
+It is not the full application repository and it is not the production source of truth.
+
+## What This Repository Contains
+
+```text
+/docs         Public-facing documentation
+/schemas      Public protocol and data structures
+/demo_inputs  Example task inputs
+/demo_outputs Example outputs
+/release      Public launch and messaging materials
+```
 
 ## Current Status
 
-**Early stage. Building in public.**
-
-- First devices connected ✅
-- Real tasks running ✅
-- Payment system in development 🚧
-
----
-
-## How to Get Started
-
-**For device owners:**
-1. Install OpenClaw
-2. Connect to OCAX network
-3. Let your device work
-
-**For task requesters:**
-1. Post your task
-2. Devices complete the work
-3. Pay on completion
-
----
+- real-computer execution direction: active
+- validation and settlement narrative: active
+- public companion repo: active
+- open public access: not active
+- broader network access: controlled pilot
 
 ## Quick Links
 
-- [Project Status](./docs/en/status.md)
-- [How It Works](./docs/en/validator.md)
-- [Launch Story](./docs/en/launch.md)
-- 中文版: [中文文档](./docs/zh/)
-
----
+- [Project Status](./docs/OCAX_STATUS_OVERVIEW_V1.md)
+- [Validator Overview](./docs/OCAX_VALIDATOR_V1.md)
+- [Node Showcase](./docs/OCAX_NODE_SHOWCASE_CARD_V1.md)
+- 中文版: [README_CN.md](./README_CN.md)
 
 ## Core Message
 
-> **Your idle device runs real tasks. You earn money.**
-
----
+> OCAX is a verified OpenClaw execution network for running tasks on real computers.
