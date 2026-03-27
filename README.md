@@ -1,124 +1,101 @@
 # OCAX
 
-> Call real computers to run OpenClaw tasks.
+**Turn OpenClaw devices into a schedulable execution network.**
 
-OCAX is a verified OpenClaw execution network for running tasks on real computers.
+OCAX is a platform for routing tasks to OpenClaw nodes, tracking execution in real time, packaging workflows as reusable assets, and turning distributed capability into something users can actually operate.
 
-Developers submit tasks, node operators provide real computers running OpenClaw, and the platform validates results and records settlement.
+---
 
-## What OCAX Is
+## What it does
+OCAX connects four things into one product experience:
 
-OCAX is not a generic task board.
-It is not a passive-income hardware scheme.
-It is not an open compute marketplace for random spare devices.
+### 1. Node Network
+Bring OpenClaw devices online as execution nodes.
 
-OCAX is a controlled execution network designed for tasks that need:
+### 2. Task Dispatch
+Send work to the right node based on availability, ownership, and execution context.
 
-- real computers
-- real browser environments
-- real desktop context
-- verifiable execution results
+### 3. Live Execution Visibility
+See what is running, what failed, what completed, and what needs attention.
 
-## Why Real Computers, Not Just Cloud / VPS
+### 4. Workflow Value Layer
+Package good workflows so they can be reused, surfaced, and monetized.
 
-Some OpenClaw and browser automation tasks do not fit neatly into generic cloud instances or headless VPS workflows.
+---
 
-OCAX focuses on tasks that benefit from:
+## Why it matters
+Most AI/device workflows break down after the demo stage:
+- tasks are created but not reliably executed
+- work runs but nobody can see what is happening
+- good workflows exist but cannot be packaged or reused well
+- operators have no real control surface
 
-- local machine context
-- real browser state
-- real desktop interaction surfaces
-- controlled validation after execution
+OCAX is designed to close that gap.
 
-This is why OCAX is better described as a verified execution network than a simple compute marketplace.
+It turns scattered OpenClaw capability into:
+- a usable node network
+- a visible execution system
+- an operator-friendly console
+- a workflow economy layer
 
-## Why It Is Not a "Share Your Computer for Money" Platform
+---
 
-That framing is too broad and no longer matches the product direction.
+## Product surfaces
+### Execution Console
+A live surface for watching executions, progress, state transitions, and operator actions.
 
-OCAX does not primarily optimize for:
+### Commerce Console
+A focused view for workflow purchases, credits, settlement-facing state, and monetization flow.
 
-- passive income messaging
-- broad consumer acquisition
-- open marketplace dynamics
+### Ops Console
+A platform-level operational surface showing health, execution posture, commerce posture, and operator hints.
 
-It is built around:
+---
 
-- task fit
-- node quality
-- verification
-- settlement discipline
-- controlled network growth
+## Who it is for
+OCAX is useful for teams or operators who want to:
+- run OpenClaw tasks across multiple machines
+- coordinate distributed execution
+- expose reusable AI workflows as products
+- operate an internal or external workflow marketplace
+- make AI/device infrastructure visible and manageable
 
-## Who It Is For
+---
 
-OCAX is currently most relevant to:
+## Positioning
+OCAX is **not just a dashboard** and **not just a task queue**.
 
-- OpenClaw advanced users
-- automation developers
-- teams that need real-computer execution
-- vetted node operators who can provide stable execution environments
+It is a platform layer that sits between:
+- task intent
+- node execution
+- workflow packaging
+- operator visibility
+- value capture
 
-## Controlled Pilot
+---
 
-OCAX is currently invite-only.
-
-The network is being opened carefully so the team can prioritize:
-
-- execution reliability
-- node quality
-- validation quality
-- stable settlement logic
-- safer early network operations
-
-## Core Execution Loop
-
-```text
-Caller submits task
--> Node computer runs task with OpenClaw
--> Platform validates outputs
--> Settlement and records are updated
-```
-
-## What This Public Repository Is
-
-This repository is the public companion repository for OCAX.
-
-It is intended for:
-
+## What this public repository is for
+This repository is for:
 - public product explanation
 - public-safe documentation
-- schema sharing
 - demo artifacts
-- launch and messaging materials
+- launch materials
+- high-level architecture and product language
 
-It is not the full application repository and it is not the production source of truth.
+It does **not** expose:
+- core implementation details
+- sensitive runtime internals
+- private operating logic
+- competitive code paths or internal hardening details
 
-## What This Repository Contains
+---
 
-```text
-/docs         Public-facing documentation
-/schemas      Public protocol and data structures
-/demo_inputs  Example task inputs
-/demo_outputs Example outputs
-/release      Public launch and messaging materials
-```
+## Status
+OCAX core product line is complete and has reached go-live-ready status at the repository/build/verification level.
 
-## Current Status
+Production deployment is a separate step and is intentionally not triggered here.
 
-- real-computer execution direction: active
-- validation and settlement narrative: active
-- public companion repo: active
-- open public access: not active
-- broader network access: controlled pilot
+---
 
-## Quick Links
-
-- [Project Status](./docs/OCAX_STATUS_OVERVIEW_V1.md)
-- [Validator Overview](./docs/OCAX_VALIDATOR_V1.md)
-- [Node Showcase](./docs/OCAX_NODE_SHOWCASE_CARD_V1.md)
-- 中文版: [README_CN.md](./README_CN.md)
-
-## Core Message
-
-> OCAX is a verified OpenClaw execution network for running tasks on real computers.
+## Short version
+**OCAX makes OpenClaw usable as a real execution platform — not just a collection of devices.**
